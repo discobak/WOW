@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>WOW :: Canal OpenCaster</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+    }
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 20px;
+      gap: 20px;
+    }
+    .player-area {
+      flex: 1 1 600px;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    video {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+    }
+    .chat {
+      flex: 1 1 300px;
+      min-width: 300px;
+      height: 500px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+    }
+    .identity {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .identity img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #ff6600;
+      margin-right: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+    }
+    .info h1 {
+      margin: 0;
+      font-size: 2em;
+      color: #fff;
+    }
+    .info p {
+      margin: 5px 0;
+      color: #ddd;
+    }
+    .tags {
+      color: #ff6600;
+      font-size: 0.9em;
+    }
+    .social a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+    .social a:hover {
+      text-decoration: underline;
+    }
+    .legal {
+      background: #111;
+      padding: 15px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #aaa;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="player-area">
+      <video id="video" controls autoplay></video>
+
+      <!-- Identidade WOW logo abaixo do player -->
+      <div class="identity">
+        <img src="WOW (1).png" alt="Logo WOW">
+        <div class="info">
+          <h1>WOW</h1>
+          <p>Canal criado por Note (10 anos)</p>
+          <p class="tags">
+            #wow #opencaster #brasil #stream #24/7 #canal
+          </p>
+          <div class="social">
+            <a href="https://youtube.com" target="_blank">YouTube</a> |
+            <a href="https://twitch.tv" target="_blank">Twitch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat">
+      <!-- Chat embutido -->
+      <iframe src="https://chat-site-user-profi-ow5c.bolt.host" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+  </main>
+
+  <script>
+    const video = document.getElementById('video');
+    const url = "https://vs20.live.opencaster.com/wow_802e52cd/index.m3u8"; // seu link M3U
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(url);
+      hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = url;
+    }
+  </script>
+
+  <!-- Aviso legal separado, com fundo cinza -->
+  <div class="legal">
+    Este projeto é experimental e sem fins lucrativos.<br>
+    Todo o conteúdo pertence aos respectivos detentores de direitos.<br>
+    Caso algum titular solicite, o material será removido em até 24h.<br>
+    Apoie sempre as versões oficiais.
+  </div>
+</body>
+</html>
